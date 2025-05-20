@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container mb-5">
+    <div class="row p-5">
+        <!-- Profile Image and Summary -->
+        <div class="col-md-4">
+            <div class="card" style="background: #1a1a1a; border: none; box-shadow: 0 0 25px #00ffe1;">
+                <img src="{% if profile.img %}{{ profile.img.url }}{% else %}{% static 'images/img-2.png.jpg' %}{% endif %}" class="card-img-top" alt="Profile Picture">
+                <div class="card-body text-center" style="color: #00ffe1;">
+                    <h5 class="card-title" style="font-size: 1.5em;">{{ profile.user.username }}</h5>
+                    <p class="card-text">{{ profile.first_name }} {{ profile.last_name }}</p>
+                    <p class="text-muted">{{ profile.bio }}</p>
+                    <p class="text-muted">Birth Date: {{ profile.birth_date }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Details -->
+        <div class="col-md-8">
+            <div class="card" style="background: #1a1a1a; border: none; box-shadow: 0 0 25px #00ffe1;">
+                <div class="card-body" style="color: #00ffe1;">
+                    <h5 class="card-title" style="font-size: 1.7em; color: #00ffe1;">Profile Details</h5>
+                    <ul class="list-group" style="color: #d1d1d1;">
+                        <li class="list-group-item" style="background: #1a1a1a; border: 1px solid #00ffe1;"><strong>Username:</strong> {{ profile.user.username }}</li>
+                        <li class="list-group-item" style="background: #1a1a1a; border: 1px solid #00ffe1;"><strong>Full Name:</strong> {{ profile.first_name }} {{ profile.last_name }}</li>
+                        <li class="list-group-item" style="background: #1a1a1a; border: 1px solid #00ffe1;"><strong>Bio:</strong> {{ profile.bio }}</li>
+                        <li class="list-group-item" style="background: #1a1a1a; border: 1px solid #00ffe1;"><strong>Birth Date:</strong> {{ profile.birth_date }}</li>
+
+                        <li class="list-group-item" style="background: #1a1a1a; border: 1px solid #00ffe1;"><a href="{% url 'password_change' %}">PAROLNI O'ZGARTIRISH</a></li>
+                        <li class="list-group-item" style="background: #1a1a1a; border: 1px solid #00ffe1;"><a href="{% url 'profile_edit' %}" style="color: #00ffe1; text-decoration: none; font-weight: bold;">Profile yangilash</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card-img-top {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .card-title {
+        font-size: 1.5em;
+        font-weight: bold;
+        color: #00ffe1;
+    }
+
+    .card-text {
+        font-size: 1.2em;
+        margin-top: 10px;
+    }
+
+    .list-group-item {
+        font-size: 1.1em;
+        padding: 15px;
+        background: #1a1a1a;
+        border: 1px solid #00ffe1;
+    }
+
+    .list-group-item a {
+        color: #00ffe1;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .list-group-item a:hover {
+        color: #00c2a6;
+    }
+
+    .list-group {
+        padding: 0;
+    }
+
+    h5.card-title {
+        color: #00ffe1;
+    }
+</style>
+{% endblock %}

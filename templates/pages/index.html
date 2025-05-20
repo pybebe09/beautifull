@@ -39,7 +39,7 @@
                   {% for x in pro %}
                   <div class="col-lg-3 col-sm-6">
                      <div class="product_box">
-                        <a href="{% url 'detail' x.id %}"><h4 class="bursh_text">{{x.name}}</h4></a>
+                        <a href="{% url 'detail' x.slug %}"><h4 class="bursh_text">{{x.name}}</h4></a>
                         <p class="lorem_text">{{x.bio}}</p>
                         <img src="{{x.img.url}}" class="image_1">
                         <div class="btn_main">
@@ -57,7 +57,7 @@
 
                </div>
 
-               <div class="seemore_bt"><a href="#">See More</a></div>
+               <div class="seemore_bt"><a href="{% url 'create' %}">ADD NEW</a></div>
             </div>
          </div>
       </div>
@@ -87,6 +87,8 @@
       {% endfor %}
       <!-- about section end -->
       <!-- customer section start -->
+
+
       <div class="customer_section layout_padding">
          <div class="container">
             <div class="row">
@@ -96,46 +98,24 @@
             </div>
             <div id="main_slider" class="carousel slide" data-ride="carousel">
                <div class="carousel-inner">
-                  <div class="carousel-item active">
+                  {% for x in client%}
+                  <div class="carousel-item {% if forloop.counter == 1 %}  active  {% endif %}">
                      <div class="client_section_2">
                         <div class="client_main">
                            <div class="client_left">
-                              <div class="client_img"><img src="images/client-img.png"></div>
+                              <div class="client_img"><img src="{{x.img.url}}"></div>
                            </div>
                            <div class="client_right">
-                              <h3 class="name_text">Jonyro</h3>
-                              <p class="dolor_text">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation  eu </p>
+                              <h3 class="name_text">{{x.name}}</h3>
+                              <p class="dolor_text">{{x.txt}}</p>
                            </div>
                         </div>
                      </div>
                   </div>
-                  <div class="carousel-item">
-                     <div class="client_section_2">
-                        <div class="client_main">
-                           <div class="client_left">
-                              <div class="client_img"><img src="images/client-img.png"></div>
-                           </div>
-                           <div class="client_right">
-                              <h3 class="name_text">Jonyro</h3>
-                              <p class="dolor_text">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation  eu </p>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="carousel-item">
-                     <div class="client_section_2">
-                        <div class="client_main">
-                           <div class="client_left">
-                              <div class="client_img"><img src="images/client-img.png"></div>
-                           </div>
-                           <div class="client_right">
-                              <h3 class="name_text">Jonyro</h3>
-                              <p class="dolor_text">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation  eu </p>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
+                  {% endfor %}
+
+
+
                <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
                <i class="fa fa-angle-left"></i>
                </a>
@@ -145,6 +125,7 @@
             </div>
          </div>
       </div>
+
       <!-- customer section end -->
       <!-- contact section start -->
       <div class="contact_section layout_padding">

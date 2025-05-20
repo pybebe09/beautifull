@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ma'lumotni O'chirish Tasdiqlash</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #121212;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: #ff4d4d;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 30px;
+        }
+
+        .form-container {
+            background-color: #1a1a1a;
+            border-radius: 16px;
+            box-shadow: 0 0 25px #ff4d4d;
+            padding: 40px;
+            max-width: 600px;
+            margin: 50px auto;
+            text-align: center;
+        }
+
+        .form-control, .form-label {
+            color: #ff4d4d;
+        }
+
+        .btn-submit {
+            background-color: #ff4d4d;
+            color: #121212;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            transition: 0.3s;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .btn-submit:hover {
+            background-color: #e60000;
+            box-shadow: 0 0 15px #ff4d4d;
+        }
+
+        .btn-cancel {
+            background-color: transparent;
+            color: #ff4d4d;
+            border: 2px solid #ff4d4d;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-weight: bold;
+            width: 100%;
+        }
+
+        .btn-cancel:hover {
+            background-color: #ff4d4d;
+            color: #121212;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h1>Rostdan ham ma'lumotni o'chirmoqchimisiz?</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn-submit">Ha, o'chirish</button>
+        </form>
+        <a href="" class="btn-cancel">Bekor qilish</a>
+    </div>
+
+    <!-- Bootstrap JS & Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

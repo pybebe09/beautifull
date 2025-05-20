@@ -1,42 +1,145 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block content %}
-<div class="product_section layout_padding">
-         <div class="container">
-            <div class="row">
-               <div class="col-sm-12">
-                  <h1 class="product_taital">Our Products</h1>
-                  <p class="product_text">incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
-               </div>
-            </div>
-            <div class="product_section_2 layout_padding">
-               <div class="row justify-content-center">
-                  <div class="col-lg-3 col-sm-6">
-                     <div class="product_box">
-                        <h4 class="bursh_text">{{x.name}}</h4>
-                        <p class="lorem_text">{{x.bio}}</p>
-                        <img src="{{x.img.url}}" class="image_1">
-                        <div class="btn_main">
-                           <div class="buy_bt">
-                              <ul>
-                                 <li class="active"><a href="#">Buy Now</a></li>
-                                 <li><a href="#">Buy Now</a></li>
-                              </ul>
-                           </div>
-                           <h3 class="price_text">Price ${{x.price}}</h3>
-                        </div>
-                     </div>
-                  </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Product Detail</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: #0f0f0f;
+      color: #f1f1f1;
+      font-family: 'Segoe UI', sans-serif;
+    }
 
-               </div>
+    .product-header {
+      background: #1a1a1a;
+      padding: 40px 0;
+      text-align: center;
+      border-bottom: 1px solid #333;
+      box-shadow: 0 0 10px #0ff;
+    }
 
-               <div class="seemore_bt"><a href="#">See More</a></div>
-            </div>
-         </div>
+    .product-header h1 {
+      font-size: 2.5rem;
+      color: #00f7ff;
+      font-weight: bold;
+    }
+
+    .product-header p {
+      color: #aaa;
+    }
+
+    .product-image {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 2px solid #00ffe7;
+      box-shadow: 0 0 10px #00ffe7;
+    }
+
+    .product-content h2 {
+      font-size: 2rem;
+      color: #00ffe7;
+    }
+
+    .price-tag {
+      font-size: 1.6rem;
+      color: #28ff73;
+      margin-bottom: 10px;
+    }
+
+    .btn-neon {
+      background-color: transparent;
+      border: 2px solid #00ffe7;
+      color: #00ffe7;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: 0.3s;
+      margin-right: 10px;
+    }
+
+    .btn-neon:hover {
+      background-color: #00ffe7;
+      color: #000;
+    }
+
+    .comment-box {
+      background: #1f1f1f;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 10px;
+      box-shadow: 0 0 5px #0ff2;
+    }
+
+    textarea {
+      width: 100%;
+      max-width: 600px;
+      background: #2b2b2b;
+      border: 1px solid #00ffe7;
+      color: #fff;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    footer {
+      background: #111;
+      color: #999;
+      padding: 20px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="product-header">
+    <h1>Mahsulot Haqida</h1>
+    <p>Mahsulot haqida ko'proq ma'lumot</p>
+  </div>
+
+  <div class="container my-5">
+    <div class="row g-5">
+      <div class="col-md-6 text-center">
+        <img src="{{ x.img.url }}" alt="Product Image" class="product-image w-75">
       </div>
+      <div class="col-md-6 product-content">
+        <h2>{{ x.name }}</h2>
+        <p class="price-tag">${{ x.price }}</p>
+        <p>{{ x.bio }}</p>
+        <hr class="border-light">
+        <h4>Tavsif</h4>
+        <p>This is where the product bio or detailed description goes. Explain the features, benefits, and other essential details that make this product stand out.</p>
+        <div class="mt-4">
+          <a href="{% url 'update' x.pk %}" class="btn-neon">Ma'lumotni tahrirlash</a>
+          <a href="{% url 'delete' x.pk %}" class="btn-neon">Ma'lumotni o'chirish</a>
+        </div>
+      </div>
+    </div>
 
+    <div class="mt-5">
+      <h4>Izohlar:</h4>
+      {% for x in comment %}
+        <div class="comment-box">
+          <strong>{{ x.user.username }}</strong>
+          <p>{{ x.text }}</p>
+        </div>
+      {% empty %}
+        <p>Hali fikrlar yo'q.</p>
+      {% endfor %}
+    </div>
 
+    <form action="" method="post" class="mt-4 d-flex flex-column align-items-center">
+      {% csrf_token %}
+      <textarea name="text" rows="4" placeholder="Fikringizni qoldiring..."></textarea>
+      <button class="btn-neon mt-3">Jo'natish</button>
+    </form>
+  </div>
 
+  <footer class="text-center mt-5">
+    <p>&copy; POWERED BY PYTHON OKE</p>
+  </footer>
 
-
-{% endblock content %}
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

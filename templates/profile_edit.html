@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-lg" style="background: #121212; border-radius: 16px; box-shadow: 0 0 25px #00ffe1;">
+                <div class="card-header text-center" style="background: transparent; border-bottom: 1px solid #00ffe1;">
+                    <h2 class="fw-bold text-neon">Edit Profile</h2>
+                </div>
+                <div class="card-body text-light">
+                    <form method="POST" enctype="multipart/form-data" novalidate>
+                        {% csrf_token %}
+
+                        <!-- Username -->
+                        <div class="mb-3">
+                            <label for="username" class="form-label text-neon">Username</label>
+                            <input type="text" id="username" name="user.username" class="form-control input-neon"
+                                   value="{{ user.username }}" required>
+                        </div>
+
+                        <!-- First Name -->
+                        <div class="mb-3">
+                            <label for="name" class="form-label text-neon">First Name</label>
+                            <input type="text" id="name" name="first_name" class="form-control input-neon"
+                                   value="{{ user.profile.first_name }}" required>
+                        </div>
+
+                        <!-- Last Name -->
+                        <div class="mb-3">
+                            <label for="surname" class="form-label text-neon">Last Name</label>
+                            <input type="text" id="surname" name="last_name" class="form-control input-neon"
+                                   value="{{ user.profile.last_name }}" required>
+                        </div>
+
+                        <!-- Birth Date -->
+                        <div class="mb-3">
+                            <label for="birth_date" class="form-label text-neon">Birth Date</label>
+                            <input type="date" id="birth_date" name="birth_date" class="form-control input-neon"
+                                   value="{{ user.profile.birth_date }}" required>
+                        </div>
+
+                        <!-- Bio -->
+                        <div class="mb-3">
+                            <label for="bio" class="form-label text-neon">Bio</label>
+                            <textarea id="bio" name="bio" rows="4" class="form-control input-neon"
+                                      required>{{ user.profile.bio }}</textarea>
+                        </div>
+
+                        <!-- Profile Picture -->
+                        <div class="mb-3">
+                            <label for="img" class="form-label text-neon">Profile Picture</label>
+                            <input type="file" id="img" name="img" class="form-control input-neon">
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-neon">Save Changes</button>
+                            <a href="{% url 'profile' %}" class="btn btn-outline-neon ms-2">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Custom CSS -->
+<style>
+    body {
+        background-color: #0a0a0a;
+    }
+    .text-neon {
+        color: #00ffe1 !important;
+    }
+    .input-neon {
+        background-color: #1e1e1e;
+        color: #00ffe1;
+        border: 1px solid #00ffe1;
+        border-radius: 8px;
+        transition: box-shadow 0.3s ease-in-out;
+    }
+    .input-neon:focus {
+        box-shadow: 0 0 10px #00ffe1;
+        outline: none;
+        background-color: #252525;
+    }
+    .btn-neon {
+        background-color: #00ffe1;
+        color: #000;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        transition: 0.3s;
+        font-weight: bold;
+    }
+    .btn-neon:hover {
+        background-color: #00e6cc;
+        box-shadow: 0 0 15px #00ffe1;
+    }
+    .btn-outline-neon {
+        background-color: transparent;
+        color: #00ffe1;
+        border: 2px solid #00ffe1;
+        border-radius: 8px;
+        padding: 10px 20px;
+        transition: 0.3s;
+        font-weight: bold;
+    }
+    .btn-outline-neon:hover {
+        background-color: #00ffe1;
+        color: #000;
+    }
+</style>
+{% endblock %}
